@@ -4,3 +4,5 @@ onload = () => {
     let header = document.getElementById("h1-header");
     header.textContent = 'Hello, Javascript Camp !!!';
 };
+
+const global_pi = Math.PI;

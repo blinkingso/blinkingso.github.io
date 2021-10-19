@@ -2,5 +2,18 @@
   "dependencies": {
     "express": "^4.17.1",
     "xmlhttprequest": "^1.8.0"
-  }
+  },
+  "name": "js_samples",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blinkingso/blinkingso.github.io.git"
+  },
+  "author": "andrew",
+  "license": "ISC",
+  "keywords": [],
+  "description": ""
 }

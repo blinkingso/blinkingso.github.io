@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8">
+    <meta name="description" content="BLINKINGSO HTML CSS AND APIS.">
+    <meta property="og:image" content="https://developer.mozilla.org/static/img/opengraph-logo.png">
+    <meta property="og:description" content="The Mozilla Developer Network (MDN) provides
+    information about Open Web technologies including HTML, CSS, and APIs for both Web sites
+    and HTML5 Apps. It also documents Mozilla products, like Firefox OS.">
+    <meta property="og:title" content="Mozilla Developer Network">
+    <meta name="twitter:title" content="Mozilla Developer Network">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <style type="text/css">
+        #tips {
+            border: 2px solid black;
+            border-radius: 10px;
+            background: linear-gradient(to top, #ffe8d4, #f69df6);
+            box-shadow: 2px 2px 1px black;
+            padding: 10px;
+            width: auto;
+            text-align: left;
+        }
+
+        #tips::before {
+            content: "🇨🇳";
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="http://www.example.com" title="Example">A linke to my example</a>
+    <p>This is a simple example</p>
+    <!-- special characters -->
+    <p>&lt; this is &amp; or &apos;</p>
+
+    <h1>The Crushing Bore</h1>
+
+    <p>By Chris Mills</p>
+
+    <h2>Chapter 1: The dark night</h2>
+
+    <p>It was a dark night. Somewhere, an owl hooted. The rain lashed down on the ...</p>
+
+    <h2>Chapter 2: The eternal silence</h2>
+
+    <p>Our protagonist could not so much as a whisper out of the shadowy figure ...</p>
+
+    <h3>The specter speaks</h3>
+
+    <p>Several more hours had passed, when all of a sudden the specter sat bolt upright and exclaimed, "Please have
+        mercy on my soul!"</p>
+
+    <span style="font-size: 32px; margin: 21px 0; display: block;">Is this a top level heading?</span>
+    <p>I am <em>glad</em> you weren't <em>late</em>.</p>
+
+    <p>This liquid is <strong>highly toxic</strong> —
+        if you drink it, <strong>you may <em>die</em></strong>.</p>
+    <p lang="zh">床前明月光,<strong> 疑是<em><u>地上</u></em>霜</strong>,
+        .举头望明月, <i><u
+                style="text-decoration-line: underline; text-decoration-color: red; text-decoration-style: wavy;">低头</u></i><b>思</b>故乡
+    </p>
+    <!-- scientific names -->
+    <p>
+        The Ruby-throated Hummingbird (<i>Archilochus colubris</i>)
+        is the most common hummingbird in Eastern North America.
+    </p>
+
+    <!-- foreign words -->
+    <p>
+        The menu was a sea of exotic words like <i lang="uk-latn">vatrushka</i>,
+        <i lang="id">nasi goreng</i> and <i lang="fr">soupe à l'oignon</i>.
+    </p>
+
+    <!-- a known misspelling -->
+    <p>
+        Someday I'll learn how to <u style="text-decoration-line: underline; text-decoration-style: wavy;">spel</u>
+        better.
+    </p>
+
+    <!-- Highlight keywords in a set of instructions -->
+    <ol>
+        <li>
+            <b>Slice</b> two pieces of bread off the loaf.
+        </li>
+        <li>
+            <b>Insert</b> a tomato slice and a leaf of
+            lettuce between the slices of bread.
+        </li>
+    </ol>
+
+    <p id="tips">a tomato slice and a leaf of
+        lettuce between the slices of bread.</p>
+
+    <!-- <div id="music"></div> -->
+
+    <div id="block_div">
+    </div>
+
+</body>
+
+<script>
+    window.onload = function () {
+        function randomColumn(columns) {
+            let mid = columns / 2;
+            let arr = [];
+            for (let i = 0; i < columns; i++) {
+                arr.push((Math.random() * columns) > mid ? 1 : 0);
+            }
+
+            return arr;
+        }
+
+        function randomRows(rows, columns) {
+            let data = [];
+            for (let row = 0; row < rows; row++) {
+                let column = randomColumn(columns);
+                data.push(column);
+            }
+
+            return data;
+        }
+
+        function drawTable(rows, columns) {
+            const block_div = document.getElementById('block_div');
+            const table = document.createElement('table');
+            table.style.border = "0";
+            // table.style.borderSpacing = "0";
+            block_div.innerHTML = "";
+            const block = randomRows(rows, columns);
+            for (let i = 0; i < rows; i++) {
+                const tr = document.createElement('tr');
+                for (let j = 0; j < columns; j++) {
+                    let td_data = block[i][j];
+                    const td = document.createElement('td');
+                    td.style.padding = 0;
+                    let small_block = document.createElement('div');
+                    td.appendChild(small_block);
+                    small_block.style = "border: none; width: 20px; height: 20px;";
+                    let [r, g, b] = [Math.random() * 256, Math.random() * 256, Math.random() * 256];
+                    small_block.style.backgroundColor = `rgba(${r}, ${g}, ${b})`;
+                    if (td_data == 1) {
+                        // set Interval
+                        setInterval(() => {
+                            let [r, g, b] = [Math.random() * 256, Math.random() * 256, Math.random() * 256];
+                            small_block.style.backgroundColor = `rgba(${r}, ${g}, ${b})`;
+                        }, 1000);
+                    }
+
+                    tr.appendChild(td);
+                }
+
+                table.appendChild(tr);
+            }
+
+            block_div.appendChild(table);
+        }
+
+        const rows = 18;
+        const columns = 30;
+        drawTable(rows, columns);
+        setInterval(() => drawTable(rows, columns), 5000);
+    }
+</script>
+
+</html>
